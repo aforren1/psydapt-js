@@ -1,6 +1,7 @@
 JS Bindings to https://github.com/aforren1/psydapt.
 
 Available on npm as an ES6 module: https://www.npmjs.com/package/psydapt
+
 Or use a CDN: https://cdn.jsdelivr.net/npm/psydapt@0.0.3/dist/psydapt.min.js
 
 JSFiddle example: https://jsfiddle.net/v6rwjtx0/
@@ -28,6 +29,7 @@ let intensity = [-3.5, -3.25, -3, -2.75, -2.5,
                  -2.25, -2, -1.75, -1.5, -1.25,
                  -1, -0.75, -0.5]
 
+// we also have QuestPlusNormCDF, with similar API
 y = new psydapt.QuestPlusWeibull({
     intensity: intensity,
     threshold: intensity,

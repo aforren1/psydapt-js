@@ -10,8 +10,8 @@ createPsydapt().then(instance => {
         n_down: 3,
         apply_initial_rule: true,
         stim_scale: "Linear",
-        min_val: 0}
-    )
+        min_val: 0
+    })
     
     for (let i = 0; i < 100; i++) {
        let t0 = performance.now();
@@ -23,8 +23,7 @@ createPsydapt().then(instance => {
     }
     
     console.log('Weibull');
-    // next() take ~35ms on my firefox browser (i.e. 2 frames)
-    // and in chromium it's ~10ms (!!)
+    // next() takes ~5ms in both firefox & chrome (with console closed)
     // in contrast, hoechenberger/questplus takes ~25ms
     y = new psydapt.QuestPlusWeibull({
         intensity: [-3.5, -3.25, -3, -2.75, -2.5, -2.25, -2, -1.75, -1.5, -1.25, -1, -0.75, -0.5],
