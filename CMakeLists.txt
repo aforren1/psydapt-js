@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_subdirectory(psydapt)
 
-add_executable(psydapt-js psydapt.cpp)
+add_executable(psydapt-js src/psydapt.cpp)
 target_link_libraries(psydapt-js PUBLIC psydapt
 "-O3"
 "--bind"
@@ -18,6 +18,6 @@ target_link_libraries(psydapt-js PUBLIC psydapt
 "-s EXPORT_ES6=1"
 "-s FILESYSTEM=0"
 "-s SINGLE_FILE=1"
-"-o psydapt.js"
+"-o psydapt-es6.js"
 #"--extern-post-js ''"
 )
