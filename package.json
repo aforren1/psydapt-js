@@ -1,6 +1,6 @@
 {
   "name": "psydapt",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Bindings for the C++ psydapt library.",
   "main": "dist/psydapt-es6.js",
   "files": [

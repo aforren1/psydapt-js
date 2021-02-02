@@ -8,7 +8,7 @@ namespace em = emscripten;
 using psydapt::staircase::Staircase;
 
 // TODO: how to error early when arguments are not provided?
-class EmStaircase : public Staircase::Staircase
+class EmStaircase : public Staircase
 {
 private:
     Staircase::Params sanitize(em::val params)
@@ -69,6 +69,11 @@ private:
             else if (stim_str == "Log10")
             {
                 s = psydapt::Scale::Log10;
+            }
+            else
+            {
+                // TODO: error
+                s = psydapt::Scale::Linear;
             }
             p.stim_scale = s;
         }
