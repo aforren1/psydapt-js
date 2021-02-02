@@ -1,0 +1,3 @@
+[submodule "psydapt"]
+	path = psydapt
+	url = https://github.com/aforren1/psydapt
