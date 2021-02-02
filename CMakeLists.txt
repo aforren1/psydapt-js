@@ -12,11 +12,12 @@ target_link_libraries(psydapt-js PUBLIC psydapt
 "-s WASM=1"
 "-s DISABLE_EXCEPTION_CATCHING=0"
 "-s ALLOW_MEMORY_GROWTH=1"
-"-s EXPORT_NAME='psydapt'"
+"-s EXPORT_NAME='createPsydapt'"
 "-s MODULARIZE=1"
 "-s MALLOC=emmalloc"
 "-s EXPORT_ES6=1"
 "-s FILESYSTEM=0"
 "-s SINGLE_FILE=1"
 "-o psydapt.js"
+#"--extern-post-js ''"
 )

@@ -1,0 +1,38 @@
+{
+  "name": "psydapt",
+  "version": "0.0.1",
+  "description": "Bindings for the C++ psydapt library.",
+  "main": "build/psydapt.js",
+  "files": [
+    "build/psydapt.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "emcmake cmake -S . -B build && cd build && emmake make && cd ..",
+    "bundle": "webpack --config webpack.prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aforren1/psydapt-js.git"
+  },
+  "author": "Alexander Forrence",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/aforren1/psydapt-js/issues"
+  },
+  "homepage": "https://github.com/aforren1/psydapt-js#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-modules-commonjs": "^7.12.1",
+    "@babel/preset-env": "^7.12.11",
+    "babel-loader": "^8.2.2",
+    "terser-webpack-plugin": "^5.1.1",
+    "webpack": "^5.19.0",
+    "webpack-cli": "^4.4.0"
+  },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  }
+}
