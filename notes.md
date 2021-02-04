@@ -5,5 +5,7 @@ With installed emsdk,
 ./emsdk activate latest
 source ./emsdk_env.sh
 
+publish with `npm publish`
+
 Links:
 https://emscripten.org/docs/compiling/Building-Projects.html

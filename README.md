@@ -2,14 +2,18 @@ JS Bindings to https://github.com/aforren1/psydapt.
 
 Available on npm as an ES6 module: https://www.npmjs.com/package/psydapt
 
-Or use a CDN: https://cdn.jsdelivr.net/npm/psydapt@0.0.4/dist/psydapt.min.js
+Or use a CDN: https://cdn.jsdelivr.net/npm/psydapt@0.0.5/dist/psydapt.min.js
 
-JSFiddle example: https://jsfiddle.net/v6rwjtx0/
+For now, see the C++ documentation for details: https://aforren1.github.io/psydapt/index.html
+
+JSFiddle example: https://jsfiddle.net/2v013hqn/
 
 ```js
 import createPsydapt from 'psydapt.js'
 let psydapt;
-createPsydapt().then(instance => { psydapt = instance; });
+createPsydapt().then(instance => {
+
+psydapt = instance;
 x = new psydapt.Staircase({
     start_val: 0.5,
     n_reversals: 3,
@@ -21,7 +25,7 @@ x = new psydapt.Staircase({
     min_val: 0
 })
 let stim = x.next()
-let finished = x.update(int) // optional: x.update(resp, value)
+let finished = x.update(resp) // optional: x.update(resp, value)
 ...
 x.delete()
 
@@ -40,8 +44,10 @@ y = new psydapt.QuestPlusWeibull({
 })
 
 let stim = y.next()
-let finished = y.update(int) // optional: y.update(resp, value)
+let finished = y.update(resp) // optional: y.update(resp, value)
 ...
 y.delete()
+
+});
 
 ```
