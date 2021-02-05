@@ -24,7 +24,7 @@
   "homepage": "https://github.com/aforren1/psydapt-js#readme",
   "devDependencies": {
     "@babel/core": "^7.12.10",
-    "@babel/plugin-transform-modules-commonjs": "^7.12.1",
+    "@babel/plugin-transform-modules-umd": "^7.12.13",
     "@babel/preset-env": "^7.12.11",
     "babel-loader": "^8.2.2",
     "webpack": "^5.19.0",
