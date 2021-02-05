@@ -6,7 +6,7 @@ Or use a CDN: https://cdn.jsdelivr.net/npm/psydapt@0.0.6/dist/psydapt.min.js
 
 For now, see the C++ documentation for details: https://aforren1.github.io/psydapt/index.html
 
-JSFiddle example: https://jsfiddle.net/2v013hqn/
+JSFiddle example: https://jsfiddle.net/8cxmr2aL/
 
 ```js
 import createPsydapt from 'psydapt.js'
