@@ -10,7 +10,7 @@ target_link_libraries(psydapt-js PUBLIC psydapt
 "-O3"
 "--bind"
 "-s WASM=1"
-"-s DISABLE_EXCEPTION_CATCHING=0"
+"-s DISABLE_EXCEPTION_CATCHING=1"
 "-s ALLOW_MEMORY_GROWTH=1"
 "-s EXPORT_NAME='createPsydapt'"
 "-s MODULARIZE=1"
@@ -18,6 +18,7 @@ target_link_libraries(psydapt-js PUBLIC psydapt
 "-s EXPORT_ES6=1"
 "-s FILESYSTEM=0"
 "-s SINGLE_FILE=1"
+"--closure 1"
 "-o psydapt-es6.js"
 #"--extern-post-js ''"
 )

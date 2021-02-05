@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "emcmake cmake -S . -B build && cd build && emmake make && cd .. && cp build/psydapt-es6.js dist/",
+    "build": "emcmake cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && cd build && emmake make && cd .. && cp build/psydapt-es6.js dist/",
     "bundle": "webpack --config webpack.prod.js"
   },
   "repository": {
