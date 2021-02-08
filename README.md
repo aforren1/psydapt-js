@@ -2,11 +2,11 @@ JS Bindings to https://github.com/aforren1/psydapt.
 
 Available on npm as an ES6 module: https://www.npmjs.com/package/psydapt
 
-Or use a CDN: https://cdn.jsdelivr.net/npm/psydapt@0.0.6/dist/psydapt.min.js
+Or use a CDN: https://cdn.jsdelivr.net/npm/psydapt@0.1.1/dist/psydapt.min.js
 
 For now, see the C++ documentation for details: https://aforren1.github.io/psydapt/index.html
 
-JSFiddle example: https://jsfiddle.net/8cxmr2aL/
+JSFiddle example: https://jsfiddle.net/7thqr13v/
 
 ```js
 import createPsydapt from 'psydapt.js'
@@ -17,7 +17,8 @@ psydapt = instance;
 x = new psydapt.Staircase({
     start_val: 0.5,
     n_reversals: 3,
-    step_sizes: [0.01, 0.001], n_trials: 20,
+    step_sizes: [0.01, 0.001],
+    n_trials: 20,
     n_up: 4,
     n_down: 3,
     apply_initial_rule: true,
