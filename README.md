@@ -22,7 +22,7 @@ x = new psydapt.Staircase({
     n_up: 4,
     n_down: 3,
     apply_initial_rule: true,
-    stim_scale: "Linear",
+    stim_scale: psydapt.Scale.Linear,
     min_val: 0
 })
 let stim = x.next()

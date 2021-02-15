@@ -1,8 +1,11 @@
 #include <string>
-#include <emscripten/bind.h>
 #include <optional>
 
+#include <emscripten.h>
+#include <emscripten/bind.h>
+
 #include "psydapt.hpp"
+#include "helper.hpp"
 
 namespace em = emscripten;
 namespace qp = psydapt::questplus;
@@ -59,94 +62,23 @@ private:
             }
             p.param_estimation_method = s;
         }
-        em::val n = params["n"];
-        if (n.isNumber())
-        {
-            p.n = n.as<unsigned int>();
-        }
-        em::val max_consecutive_reps = params["max_consecutive_reps"];
-        if (max_consecutive_reps.isNumber())
-        {
-            p.max_consecutive_reps = max_consecutive_reps.as<unsigned int>();
-        }
-        em::val random_seed = params["random_seed"];
-        if (random_seed.isNumber())
-        {
-            p.random_seed = random_seed.as<unsigned int>();
-        }
+        convert(p.n, params["n"]);
+        convert(p.max_consecutive_reps, params["max_consecutive_reps"]);
+        convert(p.random_seed, params["random_seed"]);
         // end of base params
         // begin NormCDF-specific
-        em::val stim_scale = params["stim_scale"];
-        if (stim_scale.isString())
-        {
-            std::string stim_str = stim_scale.as<std::string>();
-            psydapt::Scale s;
-            if (stim_str == "Linear")
-            {
-                s = psydapt::Scale::Linear;
-            }
-            else if (stim_str == "dB")
-            {
-                s = psydapt::Scale::dB;
-            }
-            else if (stim_str == "Log10")
-            {
-                s = psydapt::Scale::Log10;
-            }
-            else
-            {
-                // TODO: error
-                s = psydapt::Scale::Linear;
-            }
-            p.stim_scale = s;
-        }
+        convert(p.stim_scale, params["stim_scale"]["value"]);
 
-        em::val intensity = params["intensity"];
-        if (intensity.isArray())
-        {
-            p.intensity = em::convertJSArrayToNumberVector<double>(intensity);
-        }
-        em::val location = params["location"];
-        if (location.isArray())
-        {
-            p.location = em::convertJSArrayToNumberVector<double>(location);
-        }
-        em::val scale = params["scale"];
-        if (scale.isArray())
-        {
-            p.scale = em::convertJSArrayToNumberVector<double>(scale);
-        }
-        em::val lower_asymptote = params["lower_asymptote"];
-        if (lower_asymptote.isArray())
-        {
-            p.lower_asymptote = em::convertJSArrayToNumberVector<double>(lower_asymptote);
-        }
-        em::val lapse_rate = params["lapse_rate"];
-        if (lapse_rate.isArray())
-        {
-            p.lapse_rate = em::convertJSArrayToNumberVector<double>(lapse_rate);
-        }
+        convert(p.intensity, params["intensity"]);
+        convert(p.location, params["location"]);
+        convert(p.scale, params["scale"]);
+        convert(p.lower_asymptote, params["lower_asymptote"]);
+        convert(p.lapse_rate, params["lapse_rate"]);
         // priors
-        em::val location_prior = params["location_prior"];
-        if (location_prior.isArray())
-        {
-            p.location_prior = em::convertJSArrayToNumberVector<double>(location_prior);
-        }
-        em::val scale_prior = params["scale_prior"];
-        if (scale_prior.isArray())
-        {
-            p.scale_prior = em::convertJSArrayToNumberVector<double>(scale_prior);
-        }
-        em::val lower_asymptote_prior = params["lower_asymptote_prior"];
-        if (lower_asymptote_prior.isArray())
-        {
-            p.lower_asymptote_prior = em::convertJSArrayToNumberVector<double>(lower_asymptote_prior);
-        }
-        em::val lapse_rate_prior = params["lapse_rate_prior"];
-        if (lapse_rate_prior.isArray())
-        {
-            p.lapse_rate_prior = em::convertJSArrayToNumberVector<double>(lapse_rate_prior);
-        }
+        convert(p.location_prior, params["location_prior"]);
+        convert(p.scale_prior, params["scale_prior"]);
+        convert(p.lower_asymptote_prior, params["lower_asymptote_prior"]);
+        convert(p.lapse_rate_prior, params["lapse_rate_prior"]);
         return p;
     }
 

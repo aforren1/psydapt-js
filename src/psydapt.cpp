@@ -7,10 +7,15 @@
 #include "questplus_normcdf.hpp"
 
 namespace em = emscripten;
+namespace psy = psydapt;
 
 EMSCRIPTEN_BINDINGS(psydapt)
 {
-    em::class_<EmStaircase>("Staircase")
+    em::enum_<psy::Scale>("Scale")
+        .value("Linear", psy::Scale::Linear)
+        .value("dB", psy::Scale::dB)
+        .value("Log10", psy::Scale::Log10);
+    em::class_<EmStaircase>("staircase.Staircase")
         .constructor<em::val>()
         .function("update", em::select_overload<bool(int, double)>(&EmStaircase::update))
         .function("update", em::select_overload<bool(int)>(&EmStaircase::update))
@@ -28,4 +33,9 @@ EMSCRIPTEN_BINDINGS(psydapt)
         .function("update", em::select_overload<bool(int, double)>(&EmNormCDF::update))
         .function("update", em::select_overload<bool(int)>(&EmNormCDF::update))
         .function("next", &EmNormCDF::next);
+
+    // EM_ASM({
+    //     Module['staircase']['Staircase'] = Module['staircase.Staircase'];
+    //     delete Module['staircase.Staircase'];
+    // });
 }
