@@ -1,3 +1,4 @@
+#include <emscripten.h>
 #include <emscripten/bind.h>
 #include <string>
 
@@ -15,6 +16,7 @@ EMSCRIPTEN_BINDINGS(psydapt)
         .value("Linear", psy::Scale::Linear)
         .value("dB", psy::Scale::dB)
         .value("Log10", psy::Scale::Log10);
+
     em::class_<EmStaircase>("staircase.Staircase")
         .constructor<em::val>()
         .function("update", em::select_overload<bool(int, double)>(&EmStaircase::update))
@@ -22,20 +24,29 @@ EMSCRIPTEN_BINDINGS(psydapt)
         .function("next", &EmStaircase::next);
 
     // TODO: figure out namespaces
-    em::class_<EmWeibull>("QuestPlusWeibull")
+    em::class_<EmWeibull>("questplus.Weibull")
         .constructor<em::val>()
         .function("update", em::select_overload<bool(int, double)>(&EmWeibull::update))
         .function("update", em::select_overload<bool(int)>(&EmWeibull::update))
         .function("next", &EmWeibull::next);
 
-    em::class_<EmNormCDF>("QuestPlusNormCDF")
+    em::class_<EmNormCDF>("questplus.NormCDF")
         .constructor<em::val>()
         .function("update", em::select_overload<bool(int, double)>(&EmNormCDF::update))
         .function("update", em::select_overload<bool(int)>(&EmNormCDF::update))
         .function("next", &EmNormCDF::next);
 
-    // EM_ASM({
-    //     Module['staircase']['Staircase'] = Module['staircase.Staircase'];
-    //     delete Module['staircase.Staircase'];
-    // });
+    // set up namespaces
+    EM_ASM({
+        Module['staircase'] = {};
+        Module['staircase']['Staircase'] = Module['staircase$Staircase'];
+        delete Module['staircase$Staircase'];
+
+        Module['questplus'] = {};
+        Module['questplus']['Weibull'] = Module['questplus$Weibull'];
+        delete Module['questplus$Weibull'];
+
+        Module['questplus']['NormCDF'] = Module['questplus$NormCDF'];
+        delete Module['questplus$NormCDF'];
+    });
 }

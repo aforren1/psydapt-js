@@ -14,7 +14,7 @@ let psydapt;
 createPsydapt().then(instance => {
 
 psydapt = instance;
-x = new psydapt.Staircase({
+x = new psydapt.staircase.Staircase({
     start_val: 0.5,
     n_reversals: 3,
     step_sizes: [0.01, 0.001],
@@ -35,7 +35,7 @@ let intensity = [-3.5, -3.25, -3, -2.75, -2.5,
                  -1, -0.75, -0.5]
 
 // we also have QuestPlusNormCDF, with similar API
-y = new psydapt.QuestPlusWeibull({
+y = new psydapt.questplus.Weibull({
     intensity: intensity,
     threshold: intensity,
     slope: [0.5, 4.125, 7.75, 11.375, 15],
