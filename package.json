@@ -1,6 +1,6 @@
 {
   "name": "psydapt",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Bindings for the C++ psydapt library.",
   "main": "dist/psydapt-es6.js",
   "files": [
@@ -10,7 +10,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "emcmake cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && cd build && emmake make && cd .. && cp build/psydapt-es6.js dist/",
-    "bundle": "webpack --config webpack.prod.js"
+    "bundle": "webpack --config webpack.prod.js",
+    "both": "npm run build && npm run bundle"
   },
   "repository": {
     "type": "git",
