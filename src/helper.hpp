@@ -3,6 +3,7 @@
 
 #include <type_traits>
 #include <vector>
+#include <string>
 
 #include <emscripten.h>
 #include <emscripten/bind.h>
@@ -37,9 +38,9 @@ void convert(T &out, em::val input)
     }
     if constexpr (std::is_enum_v<T>)
     {
-        if (input.isNumber())
+        if (input.typeOf().as<std::string>() == "object" && input["value"].isNumber())
         {
-            out = static_cast<T>(input.as<int>());
+            out = static_cast<T>(input["value"].as<int>());
             return;
         }
     }

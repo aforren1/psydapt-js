@@ -8,6 +8,8 @@ check_ipo_supported()
 
 add_subdirectory(psydapt)
 
+set(PSYDAPT_DISABLE_EXCEPTIONS ON CACHE BOOL "" FORCE)
+
 add_executable(psydapt-js src/psydapt.cpp)
 set_property(TARGET psydapt-js PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
 target_link_libraries(psydapt-js PUBLIC psydapt
