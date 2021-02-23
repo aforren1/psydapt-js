@@ -1,17 +1,23 @@
 {
   "name": "psydapt",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Bindings for the C++ psydapt library.",
   "main": "dist/psydapt-es6.js",
-  "files": [
-    "dist/psydapt-es6.js",
-    "dist/psydapt.min.js"
-  ],
+  "files": ["dist"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "emcmake cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && cd build && emmake make && cd .. && cp build/psydapt-es6.js dist/",
-    "bundle": "webpack --config webpack.prod.js",
-    "both": "npm run build && npm run bundle"
+    "build": "npm run build_individual",
+    "build_individual": "rm -rf build && emcmake cmake -S . -B build -DCMAKE_BUILD_TYPE=Release $FLAGS && npm run buildpt2",
+    "build_staircase": "FLAGS='-DINCLUDE_ALL=OFF -DINCLUDE_STAIRCASE=ON' npm run build_individual",
+    "build_qp_weibull": "FLAGS='-DINCLUDE_ALL=OFF -DINCLUDE_QP_WEIBULL=ON' npm run build_individual",
+    "build_qp_normcdf": "FLAGS='-DINCLUDE_ALL=OFF -DINCLUDE_QP_NORMCDF=ON' npm run build_individual",
+    "build_qp_csf": "FLAGS='-DINCLUDE_ALL=OFF -DINCLUDE_QP_CSF=ON' npm run build_individual",
+    "build_all": "npm run build && npm run build_staircase && npm run build_qp_weibull && npm run build_qp_normcdf && npm run build_qp_csf",
+    "buildpt2": "cd build && emmake make && cd .. && cp build/psydapt*.js dist/",
+    "bundle": "webpack --env=input=psydapt-es6.js",
+    "bundle_all": "for i in ./dist/*-es6.js; do webpack --env=input=$(basename $i); done",
+    "build_bundle": "npm run build && npm run bundle",
+    "build_bundle_all": "npm run build_all && npm run bundle_all"
   },
   "repository": {
     "type": "git",

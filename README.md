@@ -2,11 +2,13 @@ JS Bindings to https://github.com/aforren1/psydapt.
 
 Available on npm as an ES6 module: https://www.npmjs.com/package/psydapt
 
-Or use a CDN: https://cdn.jsdelivr.net/npm/psydapt@0.1.2/dist/psydapt.min.js
+Or use a CDN: https://cdn.jsdelivr.net/npm/psydapt@0.1.3/dist/psydapt.min.js
+
+To cut down on download sizes in production, single-routine files are also available. See https://cdn.jsdelivr.net/npm/psydapt@0.1.3/dist/
 
 For now, see the C++ documentation for details: https://aforren1.github.io/psydapt/index.html
 
-JSFiddle example: https://jsfiddle.net/yLb62fr3/4/
+JSFiddle example: https://jsfiddle.net/su6jpxdq/
 
 ```js
 import createPsydapt from 'psydapt.js'
