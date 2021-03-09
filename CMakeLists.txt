@@ -56,25 +56,29 @@ if(INCLUDE_QP_CSF)
 endif()
 
 set(PSYDAPT_DISABLE_EXCEPTIONS ON CACHE BOOL "" FORCE)
+# makes code significantly larger?
+#add_definitions(-DPSYDAPT_DISABLE_EXCEPTIONS)
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-exceptions -fno-rtti -DEMSCRIPTEN_HAS_UNBOUND_TYPE_NAMES=0")
 
 add_executable(psydapt-js src/psydapt.cpp)
 set_property(TARGET psydapt-js PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
 target_link_libraries(psydapt-js PUBLIC psydapt
 "-O3"
 "--bind"
-"-s STRICT=1"
 "--no-entry"
+"-s STRICT=1"
 "-s WASM=1"
 "-s DISABLE_EXCEPTION_CATCHING=1"
 "-s ALLOW_MEMORY_GROWTH=1"
 "-s EXPORT_NAME='createPsydapt'"
 "-s MODULARIZE=1"
-"-s MALLOC=emmalloc"
 "-s EXPORT_ES6=1"
+"-s MALLOC=emmalloc"
 "-s FILESYSTEM=0"
 "-s SINGLE_FILE=1"
 "--closure 1"
 "-flto"
+#"-s USE_ES6_IMPORT_META=0" # ??
+#"-s ENVIRONMENT=web" # no size differences
 "-o psydapt${SUFFIX}-es6.js"
-#"--extern-post-js ''"
 )

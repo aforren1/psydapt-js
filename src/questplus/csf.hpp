@@ -2,7 +2,7 @@
 #include <emscripten/bind.h>
 #include <array>
 
-#include "psydapt.hpp"
+#include "psydapt/questplus/csf.hpp"
 #include "../helper.hpp"
 
 namespace em = emscripten;

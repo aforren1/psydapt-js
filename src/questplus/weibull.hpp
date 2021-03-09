@@ -1,6 +1,6 @@
 #include <emscripten/bind.h>
 
-#include "psydapt.hpp"
+#include "psydapt/questplus/weibull.hpp"
 #include "../helper.hpp"
 
 namespace em = emscripten;

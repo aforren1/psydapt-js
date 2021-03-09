@@ -1,7 +1,7 @@
 #include <emscripten.h>
 #include <emscripten/bind.h>
 
-#include "psydapt.hpp"
+#include "psydapt/questplus/norm_cdf.hpp"
 #include "../helper.hpp"
 
 namespace em = emscripten;

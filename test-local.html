@@ -1,7 +1,108 @@
-
+<!DOCTYPE html>
 <html>
 
 <body>
-    <script src="./dist/psydapt.min.js"></script>
+    <script>
+    const asc = arr => arr.sort((a, b) => a - b);
+    const sum = arr => arr.reduce((a, b) => a + b, 0);
+    const mean = arr => sum(arr) / arr.length;
+    const quantile = (arr, q) => {
+        const sorted = asc(arr);
+        const pos = (sorted.length - 1) * q;
+        const base = Math.floor(pos);
+        const rest = pos - base;
+        if (sorted[base + 1] !== undefined) {
+            return sorted[base] + rest * (sorted[base + 1] - sorted[base]);
+        } else {
+            return sorted[base];
+        }
+    }; 
+    </script>
+    <script type="module">
+        import createPsydapt from './dist/psydapt-qp_csf-es6.js';
+        let psydapt;
+        let times = []
+        createPsydapt().then((mod) => {
+            psydapt = mod; 
+            console.log(psydapt)
+            let contrast = [-50, -48, -46, -44, -42, -40, -38, -36, -34, -32, -30, -28, -26,
+                  -24, -22, -20, -18, -16, -14, -12, -10, -8, -6, -4, -2, 0];
+            let spatial_freq = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32,
+                      34, 36, 38, 40];
+            let temporal_freq = [0];
+
+            let min_thresh = [-50, -48, -46, -44, -42, -40, -38, -36, -34, -32, -30];
+            let c0 = [-60, -58, -56, -54, -52, -50, -48, -46, -44, -42, -40];
+            let cf = [0.8, 1., 1.2, 1.4, 1.6]
+            let cw = [0]
+            let slope = [3]
+            let lower_asymptote = [0.5];
+            let lapse_rate = [0.01];
+
+
+            let qp = psydapt.questplus;
+            let y = new qp.CSF({
+                contrast: contrast,
+                spatial_freq: spatial_freq,
+                temporal_freq: temporal_freq,
+                min_thresh: min_thresh,
+                c0: c0,
+                cf: cf,
+                cw: cw,
+                slope: slope,
+                lower_asymptote: lower_asymptote,
+                lapse_rate: lapse_rate,
+                stim_scale: psydapt.Scale.dB
+            });
+
+            let resps = [1, 0, 1, 1, 1, 1, 0, 1, 1, 1,
+                         1, 1, 0, 1, 1, 1, 1, 1, 0, 0,
+                         1, 1, 1, 1, 1, 1, 1, 0, 0, 1,
+                         1, 1];
+
+            for (let i = 0; i < resps.length; i++) {
+                let t0 = performance.now()
+                let val = y.next()
+                // console.log(val)
+                y.update(resps[i])
+                let t1 = performance.now()
+                times.push(t1 - t0)
+            }
+            console.log(Math.min(...times), quantile(times, 0.5), Math.max(...times))
+        });
+    </script>
+
+    <script src='./dist/psydapt.min.js'></script>
+    <script>
+        let psydapt;
+        let times2 = []
+        createPsydapt().then((mod) => {
+            psydapt = mod; 
+            console.log(psydapt);
+            let intensity = [-3.5, -3.25, -3, -2.75, -2.5,
+                 -2.25, -2, -1.75, -1.5, -1.25,
+                 -1, -0.75, -0.5]
+
+            let qp = psydapt.questplus;
+            let y = new qp.Weibull({
+                intensity: intensity,
+                threshold: intensity,
+                slope: [0.5, 4.125, 7.75, 11.375, 15],
+                lower_asymptote: [0.01, 0.1325, 0.255, 0.3775, 0.5],
+                lapse_rate: [0.01],
+                stim_scale: psydapt.Scale.Linear
+            });
+
+            for (let i = 0; i < 100; i++) {
+                let t0 = performance.now()
+                y.next()
+                y.update(i % 2)
+                let t1 = performance.now()
+                times2.push(t1 - t0)
+            }
+            console.log(Math.min(...times2), quantile(times2, 0.5), Math.max(...times2))
+        });
+
+    </script>
 </body>
 </html>

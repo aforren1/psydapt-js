@@ -2,13 +2,13 @@ JS Bindings to https://github.com/aforren1/psydapt.
 
 Available on npm as an ES6 module: https://www.npmjs.com/package/psydapt
 
-Or use a CDN: https://cdn.jsdelivr.net/npm/psydapt@0.1.3/dist/psydapt.min.js
+Or use a CDN: https://cdn.jsdelivr.net/npm/psydapt@0.1.5/dist/psydapt.min.js
 
-To cut down on download sizes in production, single-routine files are also available. See https://cdn.jsdelivr.net/npm/psydapt@0.1.3/dist/
+To cut down on download sizes in production, single-routine files are also available. See https://cdn.jsdelivr.net/npm/psydapt@0.1.5/dist/
 
 For now, see the C++ documentation for details: https://aforren1.github.io/psydapt/index.html
 
-JSFiddle example: https://jsfiddle.net/su6jpxdq/
+JSFiddle example: https://jsfiddle.net/23zwgnox/
 
 ```js
 import createPsydapt from 'psydapt.js'
@@ -16,7 +16,7 @@ let psydapt;
 createPsydapt().then(instance => {
 
 psydapt = instance;
-x = new psydapt.staircase.Staircase({
+let x = new psydapt.staircase.Staircase({
     start_val: 0.5,
     n_reversals: 3,
     step_sizes: [0.01, 0.001],
@@ -36,9 +36,9 @@ let intensity = [-3.5, -3.25, -3, -2.75, -2.5,
                  -2.25, -2, -1.75, -1.5, -1.25,
                  -1, -0.75, -0.5]
 
-// we also have QuestPlusNormCDF, with similar API
+// we also have questplus.NormCDF and CSF, with similar API
 let qp = psydapt.questplus
-y = new qp.Weibull({
+let y = new qp.Weibull({
     intensity: intensity,
     threshold: intensity,
     slope: [0.5, 4.125, 7.75, 11.375, 15],

@@ -1,8 +1,7 @@
 #include <emscripten.h>
 #include <emscripten/bind.h>
-#include <string>
 
-#include "psydapt.hpp"
+#include "psydapt/base.hpp"
 #if defined(USE_STAIRCASE)
 #include "staircase/staircase.hpp"
 #endif
