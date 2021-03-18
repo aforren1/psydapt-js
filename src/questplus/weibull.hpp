@@ -17,9 +17,13 @@ namespace questplus
             // base params for all quest+
             convert(p.stim_selection_method, params["stim_selection_method"]);
             convert(p.param_estimation_method, params["param_estimation_method"]);
-            convert(p.n, params["n"]);
-            convert(p.max_consecutive_reps, params["max_consecutive_reps"]);
-            convert(p.random_seed, params["random_seed"]);
+            auto temp = params["min_n_entropy_params"];
+            if (temp.typeOf().as<std::string>() == "object")
+            {
+                convert(p.min_n_entropy_params.n, temp["n"]);
+                convert(p.min_n_entropy_params.max_consecutive_reps, temp["max_consecutive_reps"]);
+                convert(p.min_n_entropy_params.random_seed, temp["random_seed"]);
+            }
             // end of base params
             // begin Weibull-specific
             convert(p.stim_scale, params["stim_scale"]);
