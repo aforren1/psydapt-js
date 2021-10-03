@@ -56,6 +56,7 @@ if(INCLUDE_QP_CSF)
 endif()
 
 set(PSYDAPT_DISABLE_EXCEPTIONS ON CACHE BOOL "" FORCE)
+set(PSYDAPT_FAST_MATH ON CACHE BOOL "" FORCE)
 # makes code significantly larger?
 #add_definitions(-DPSYDAPT_DISABLE_EXCEPTIONS)
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-exceptions -fno-rtti -DEMSCRIPTEN_HAS_UNBOUND_TYPE_NAMES=0")
@@ -79,6 +80,6 @@ target_link_libraries(psydapt-js PUBLIC psydapt
 "--closure 1"
 "-flto"
 #"-s USE_ES6_IMPORT_META=0" # ??
-#"-s ENVIRONMENT=web" # no size differences
+"-s ENVIRONMENT=web" # no size differences
 "-o psydapt${SUFFIX}-es6.js"
 )
