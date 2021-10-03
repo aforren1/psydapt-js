@@ -2,7 +2,7 @@ JS Bindings to https://github.com/aforren1/psydapt.
 
 Available on npm as an ES6 module: https://www.npmjs.com/package/psydapt
 
-Or use a CDN: https://cdn.jsdelivr.net/npm/psydapt@0.1.6/dist/psydapt.min.js
+Or use a CDN: https://cdn.jsdelivr.net/npm/psydapt@0.1.8/dist/psydapt.min.js
 
 To cut down on download sizes in production, single-routine files are also available. See https://www.jsdelivr.com/package/npm/psydapt
 
